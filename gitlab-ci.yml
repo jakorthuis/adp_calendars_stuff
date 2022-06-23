@@ -1,0 +1,10 @@
+stages:
+  - build
+RunPython:on-schedule:
+  stage: build
+  script:
+    - echo "client_id = '$AUTHID'" >> secrets.py
+    - echo "client_secret = '$AUTHKEY'" >> secrets.py
+    - echo "slackURL = '$SLACKURL'" >> secrets.py
+    - echo "credentials = $CREDENTIALS" >> secrets.py
+    - python3 $SCRIPT
