@@ -85,7 +85,7 @@ def calendarWriter(summary,date):
     
 
 def summaryLookup(date1,date2):
-    url =  "https://api.adp.com/time/v3/workers/G5RZSMP5E9WEXDV5/time-off-request-summaries?$filter=requestStartdate eq " +date1+" and requestEndDate eq " +date2 + " $ordrby= approvedRequestQuantity asc&$orderby=approvedRequestQuantity desc"
+    url =  "https://api.adp.com/time/v3/workers/%id%/time-off-request-summaries?$filter=requestStartdate eq " +date1+" and requestEndDate eq " +date2 + " $ordrby= approvedRequestQuantity asc&$orderby=approvedRequestQuantity desc"
     response = requests.get(url,headers=requestHeader,cert=(certz))
     return json.loads(response.text)["timeOffRequestSummaries"]
 
@@ -227,8 +227,3 @@ for x in resultArray:
     for i in resultArray[x]:
         print(str(x) + " " + str(i))
         calendarWriter(str(x),i)
-
-        #resultArray[x] = [1,2,3,4]
-        #x = "Sonya J Luhm"
-
-

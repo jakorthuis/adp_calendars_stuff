@@ -158,19 +158,14 @@ slackHeader = full_month_name.upper() + " MONTHLY SUMMARY"
 slackText = ""
 slackContext = "This list only contains crew with 4 or more *sequential days off* as of " +todayString+ "\n"
 for x in resultArray:
-    #resultArray[x] = [1,2,3,4]
-    #x = "Sonya J Luhm"
+
     if len(resultArray[x]) > 2: #do they have more than two days off
         resultArray[x] = sequenceFinder(x,resultArray[x],resultArrayDateTime[x])
-        #numbers = resultArray['Deanna L Clemens']
-        #dates = resultArrayDateTime['Deanna L Clemens']
+
     else:
         resultArray[x] = ",".join(resultArray[x])
     thistext = x +" [" +resultArray[x] + "]"
     slackText = slackText + thistext  +" \n"
 
-# for x in resultArray:
-#     joined_string = ",".join(resultArray[x])
-#     thistext = resultArray[x] +" [" +joined_string + "]"
-#     slackText = slackText + thistext  +" \n"
+
 slackPost(slackHeader,slackText,slackContext)
